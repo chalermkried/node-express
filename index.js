@@ -7,7 +7,7 @@ app.use(cors())
 
 app.set('trust proxy', true)
 
-app.get('/', (req, res) => {
+app.all('/', (req, res) => {
   res.json({
     status: 'ok',
     data: {
