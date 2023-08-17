@@ -5,13 +5,17 @@ const port = 3001
 
 app.use(cors())
 
+app.set('trust proxy', true)
+
 app.get('/', (req, res) => {
   res.json({
     status: 'ok',
     data: {
       ip: req.ip,
       ips: req.ips,
-      connectionRemoteAddress: req.connection.remoteAddress
+      connectionRemoteAddress: req.connection.remoteAddress,
+      socketRemoteAddress: req.socket.remoteAddress,
+      headerFwd: req.header('x-forwarded-for'),
     }
   })
 })
