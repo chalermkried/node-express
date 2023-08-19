@@ -7,7 +7,7 @@ app.use(cors())
 
 app.set('trust proxy', true)
 
-app.all('/', (req, res) => {
+app.all('*', (req, res) => {
   res.json({
     status: 'ok',
     data: {
@@ -16,7 +16,9 @@ app.all('/', (req, res) => {
       connectionRemoteAddress: req.connection.remoteAddress,
       socketRemoteAddress: req.socket.remoteAddress,
       headerFwd: req.header('x-forwarded-for'),
-    }
+      hostname: req.hostname,
+      headers: req.headers
+    },
   })
 })
 
