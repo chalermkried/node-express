@@ -1,0 +1,24 @@
+name: Test Dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      value1:
+        type: string
+        description: 'Temp Value'
+        required: true
+      value2:
+        type: string
+        description: 'Temp Optional Value'
+        required: false
+
+jobs:
+  temp-job:
+    name: Temp Job
+    timeout-minutes: 3
+    runs-on: ubuntu-latest
+    steps:
+    - name: Echo Input Data
+      run: |
+        echo "Value 1: ${{ github.event.inputs.value1 }}"
+        echo "Value 2: ${{ github.event.inputs.value2 }}"
